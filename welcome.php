@@ -7,7 +7,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   header("location: login.php");
   exit;
 }
-
+$username = $_SESSION['username'];
 ?>
  
 <!doctype html>
@@ -43,7 +43,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
           <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
               <ul class="nav flex-column">
-                <li class="nav-item">
+                
+				<li class="nav-item">
                   <a class="nav-link" href="/#">
                     <span data-feather="home"></span>
                     Indicadores
@@ -53,6 +54,18 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                   <a class="nav-link active" href="welcome.php">
                     <span data-feather="file"></span>
                     wallet <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+				<li class="nav-item">
+                  <a class="nav-link">
+                   <?php
+				  if(isset($_SESSION['username']) || !empty($_SESSION['username'])){echo "Logueado como ". $username; }?> <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+				<li class="nav-item">
+                  <a class="nav-link" href="">
+				  <?php
+				  if(isset($_SESSION['username']) || !empty($_SESSION['username'])){echo '<p><a href="logout.php" class="btn btn-danger" style="margin: 10px">LogOut</a></p>';} ?>
                   </a>
                 </li>
                 </li>
@@ -76,12 +89,10 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
               include 'login.php';
           } else {
       
-              include 'includes/wallet.php';
+              include 'wallet.html';
 
             }
           ?>
-					<br></br>
-					<p><a href="logout.php" class="btn btn-danger">LogOut</a></p>
 				</div>
 				</div>
 			</main>
@@ -91,19 +102,13 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="assets/js/vendor/popper.min.js"></script>
+    <!--<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="assets/js/vendor/popper.min.js"></script>-->
     <script src="dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
-    
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
 
     <!-- Graphs -->
   </body>

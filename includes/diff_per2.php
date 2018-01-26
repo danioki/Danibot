@@ -2,7 +2,7 @@
 include_once 'config.php';
 
 
-$conn = new mysqli($servername_db, $username_db, $password_db, $dbname_db);
+$conn = new mysqli($servername_db, $username_db, $password_db, "crypto_db");
 // Check connection
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
