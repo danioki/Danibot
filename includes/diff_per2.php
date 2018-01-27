@@ -21,7 +21,7 @@ foreach($markets as $market) {
 	FORMAT(100 * (g1.vol - g2.vol) / g1.vol, 2) AS vol_change,
 	FORMAT(100 * (g1.last - g2.last) / g1.last, 2) AS change_,
 	FORMAT(100 * (g1.last - g3.last) / g1.last, 2) AS change_10,
-	FORMAT(100 * (g1.last - g4.last) / g1.last, 2) AS change_20,
+	FORMAT(100 * (g1.last - g4.last) / g1.last, 2) AS change_30,
 	g1.bid AS bid,
 	g1.ask AS ask,
 	FORMAT(100 * (g1.ask - g1.bid) / g1.ask, 2) AS spread,
@@ -30,7 +30,7 @@ foreach($markets as $market) {
 	$curr g1
 		INNER JOIN $curr g2 ON g2.id = g1.id + 1
 		INNER JOIN $curr g3 ON g3.id = g1.id + 3
-		INNER JOIN $curr g4 ON g4.id = g1.id + 7
+		INNER JOIN $curr g4 ON g4.id = g1.id + 10
 	WHERE
 	1
 	ORDER BY id DESC

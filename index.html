@@ -55,7 +55,7 @@
                 <th>Volume Change [%]</th>
                 <th>Value Change [%]</th>
                 <th>Value Change 10m[%]</th>
-                <th>Value Change 20m[%]</th>
+                <th>Value Change 30m[%]</th>
               </tr>
             </thead>
           </table>
@@ -113,7 +113,7 @@
 				},
 				{ mData: 'change_10',
 					"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-							if ( parseFloat(oData.change_10) > 1 ) {
+							if ( parseFloat(oData.change_10) > 2 ) {
 								$(nTd).css('color', '#9ACD32 ')
 							}
 							if ( parseFloat(oData.change_10) < 0.5 ) {
@@ -122,12 +122,21 @@
 						}
 						
 				},
-				{ mData: 'change_20' }
+				{ mData: 'change_30',
+					"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+							if ( parseFloat(oData.change_30) > 2 || parseFloat(oData.change_30) < 8) {
+								$(nTd).css('color', '#9ACD32 ')
+							}
+							if ( parseFloat(oData.change_30) < 2 || parseFloat(oData.change_30) > 8) {
+								$(nTd).css('color', 'red ')
+							}
+						}
+				}
               ]
         });  
         setInterval( function () {
           table.api().ajax.reload( null, false ); // user paging is not reset on reload
-      }, 30000 );
+      }, 10000 );
     });
   
   </script>
